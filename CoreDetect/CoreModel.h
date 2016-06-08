@@ -10,8 +10,8 @@ public:
 	BOOL Intel;
 	BOOL AMD;
 
-	BOOL isIntel() { return Intel; }
-	BOOL isAMD() { return AMD; }
+	BOOL isIntel();
+	BOOL isAMD();
 
 	CoreModel();
 	~CoreModel();

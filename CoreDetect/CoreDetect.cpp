@@ -89,17 +89,15 @@ int main()
 		// Get DCP cache info
 		cpuID(4, regs);
 		cores = ((regs[0] >> 26) & 0x3f) + 1; // EAX[31:26] + 1
-		// Intel = true;
 		coreModel.Intel = true;
-
+		coreModel.AMD = false;
 	}
 	else if (cpuVendor == "AuthenticAMD") {
 		// Get NC: Number of CPU cores - 1
 		cpuID(0x80000008, regs);
 		cores = ((unsigned)(regs[2] & 0xff)) + 1; // ECX[7:0] + 1
-		// AMD = true;
+		coreModel.Intel = false;
 		coreModel.AMD = true;
-
 	}
 		
 	// Detect hyper-threads  
@@ -112,9 +110,9 @@ int main()
 	cout << "  true cpu cores: " << cores << endl;
 	cout << "  logical cores : " << logical;	
 	
-	if ( coreModel.Intel )
+	if (coreModel.isIntel())
 		cout << " GenuineIntel" << endl;
-	if ( coreModel.AMD )
+	if ( coreModel.isAMD() )
 		cout << " AuthenticAMD" << endl;
 
 	for (int i = 0; i < GroupCount; i++) {
