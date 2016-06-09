@@ -89,15 +89,27 @@ int main()
 		// Get DCP cache info
 		cpuID(4, regs);
 		cores = ((regs[0] >> 26) & 0x3f) + 1; // EAX[31:26] + 1
+<<<<<<< HEAD
 		coreModel.Intel = true;
 		coreModel.AMD = false;
+=======
+		// Intel = true;
+		coreModel.Intel = true;
+
+>>>>>>> 0315703... Add files via upload
 	}
 	else if (cpuVendor == "AuthenticAMD") {
 		// Get NC: Number of CPU cores - 1
 		cpuID(0x80000008, regs);
 		cores = ((unsigned)(regs[2] & 0xff)) + 1; // ECX[7:0] + 1
+<<<<<<< HEAD
 		coreModel.Intel = false;
 		coreModel.AMD = true;
+=======
+		// AMD = true;
+		coreModel.AMD = true;
+
+>>>>>>> 0315703... Add files via upload
 	}
 		
 	// Detect hyper-threads  
@@ -110,9 +122,15 @@ int main()
 	cout << "  true cpu cores: " << cores << endl;
 	cout << "  logical cores : " << logical;	
 	
+<<<<<<< HEAD
 	if (coreModel.isIntel())
 		cout << " GenuineIntel" << endl;
 	if ( coreModel.isAMD() )
+=======
+	if ( coreModel.Intel )
+		cout << " GenuineIntel" << endl;
+	if ( coreModel.AMD )
+>>>>>>> 0315703... Add files via upload
 		cout << " AuthenticAMD" << endl;
 
 	for (int i = 0; i < GroupCount; i++) {
